@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Circle, CircleMarker, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { riskZones, RISK_LEVELS } from '../data/riskData';
+import { RISK_LEVELS } from '../data/riskData';
 import './RiskMap.css';
 
 // Helper to get color based on risk level
@@ -40,10 +40,10 @@ function MapController({ selectedZone }) {
   return null;
 }
 
-export default function RiskMap({ selectedZone, onZoneSelect, filter }) {
+export default function RiskMap({ zones, selectedZone, onZoneSelect, filter }) {
   const [zoom, setZoom] = useState(5);
 
-  const filteredZones = riskZones.filter(zone => 
+  const filteredZones = zones.filter(zone => 
     filter === 'all' || zone.issueType === filter
   );
 

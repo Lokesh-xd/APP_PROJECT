@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { riskZones, ISSUE_TYPES } from '../data/riskData';
+import { ISSUE_TYPES } from '../data/riskData';
 import './SearchBar.css';
 
-export default function SearchBar({ onSelect, filter, onFilterChange }) {
+export default function SearchBar({ zones, onSelect, filter, onFilterChange }) {
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
   const results = query.trim().length > 0
-    ? riskZones.filter(z =>
+    ? zones.filter(z =>
         z.name.toLowerCase().includes(query.toLowerCase()) ||
         z.state.toLowerCase().includes(query.toLowerCase())
       )
